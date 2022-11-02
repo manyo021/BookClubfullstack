@@ -3,11 +3,11 @@ import axios from 'axios';
 export const BASE_URL = 'https://localhost:7213/';
 export const ENDPOINTS =
 {
-    auth: 'auth'
+    auth: 'auth/'
 }
 
 export const createAPIEndpoint = endpoint => {
-    let url = BASE_URL + 'api/' + endpoint + '/';
+    let url = BASE_URL + 'api/' + endpoint + 'register/';
     return {
         fetch: () => axios.get(url),
         fetchById: id => axios.get(url + id),

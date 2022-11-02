@@ -8,7 +8,10 @@ import { createAPIEndpoint, ENDPOINTS } from '../api'
 
 const getFreshModel = () => ({
     username: '',
-    package: ''
+    password: '',
+    firstname: '',
+    lastname: '',
+    email: ''
 })
 
 export default function Login() {
@@ -33,6 +36,7 @@ export default function Login() {
     const validate = () => {
         let temp = {}
         temp.username = values.username !== "" ? "" : "This field is required."
+        temp.email = (/\S+@\S+\.\S+/).test(values.email) ? "" : "Email is not valid."
         setErrors(temp)
         return Object.values(temp).every(x => x === "")
     }
@@ -54,7 +58,10 @@ export default function Login() {
                         <form noValidate onSubmit={login}>
                             <TextField label="Username" name='username' value={values.username} onChange={handleInputChange} variant='outlined'{...(errors.Username && { error: true, helperText: errors.username })} />
                             <TextField label="Password" name='password' value={values.password} onChange={handleInputChange} variant='outlined' />
-                            <Button type='submit' variant="contained" size='large' sx={{ width: '90%' }}>Submit</Button>
+                            <TextField label="Firstname" name='firstname' value={values.firstname} onChange={handleInputChange} variant='outlined' />
+                            <TextField label="Lastname" name='lastname' value={values.lastname} onChange={handleInputChange} variant='outlined' />
+                            <TextField label="email" name='email' value={values.email} onChange={handleInputChange} variant='outlined'{...(errors.email && { error: true, helperText: errors.email })} />
+                            <Button type='signIn' variant="contained" size='large' sx={{ width: '90%' }}>Sign In</Button>
                         </form>
 
                     </Box>
