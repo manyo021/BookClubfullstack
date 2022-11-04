@@ -5,6 +5,7 @@ import { Box } from '@mui/system'
 import Center from './Center'
 import useForm from './Hooks/useForm'
 import { createAPIEndpoint, ENDPOINTS } from '../api'
+import { Link } from 'react-router-dom'
 
 const getFreshModel = () => ({
     username: '',
@@ -56,7 +57,11 @@ export default function Login() {
                             <TextField label="Username" name='username' value={values.username} onChange={handleInputChange} variant='outlined'{...(errors.Username && { error: true, helperText: errors.username })} />
                             <TextField label="Password" name='password' value={values.password} onChange={handleInputChange} variant='outlined' />
                             <Button type='signIn' variant="Text" size='medium' sx={{ width: '40%' }}>Sign In</Button>
-                            {/* <Button type='signIn' variant="Text" size='medium' sx={{ width: '40%' }}>Register</Button>  */}
+                            <Link to="/Register" style={{ textDecoration: 'none' }}>
+                                <Button type='signIn' variant="Text" size='medium' sx={{ width: '40%' }}>
+                                    Register
+                                </Button>
+                            </Link>
                         </form>
 
                     </Box>

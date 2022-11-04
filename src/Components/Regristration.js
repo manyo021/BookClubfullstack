@@ -61,7 +61,7 @@ export default function Register() {
                             <TextField label="Firstname" name='firstname' value={values.firstname} onChange={handleInputChange} variant='outlined' />
                             <TextField label="Lastname" name='lastname' value={values.lastname} onChange={handleInputChange} variant='outlined' />
                             <TextField label="email" name='email' value={values.email} onChange={handleInputChange} variant='outlined'{...(errors.email && { error: true, helperText: errors.email })} />
-                            <Button type='signIn' variant="contained" size='large' sx={{ width: '90%' }}>Sign In</Button>
+                            <Button type='signIn' variant="contained" size='large' sx={{ width: '90%' }}>Sign Up</Button>
                         </form>
 
                     </Box>
