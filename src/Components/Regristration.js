@@ -9,10 +9,12 @@ import { createAPIEndpoint, ENDPOINTS } from '../api'
 const getFreshModel = () => ({
     username: '',
     password: '',
-
+    firstname: '',
+    lastname: '',
+    email: ''
 })
 
-export default function Login() {
+export default function Register() {
 
     const {
         values,
@@ -22,10 +24,10 @@ export default function Login() {
         handleInputChange
     } = useForm(getFreshModel);
 
-    const Login = e => {
+    const Register = e => {
         e.preventDefault();
         if (validate())
-            createAPIEndpoint(ENDPOINTS.login)
+            createAPIEndpoint(ENDPOINTS.register)
                 .post(values)
                 .then(res => console.log(res))
                 .catch(err => console.log(err))
@@ -34,6 +36,7 @@ export default function Login() {
     const validate = () => {
         let temp = {}
         temp.username = values.username !== "" ? "" : "This field is required."
+        temp.email = (/\S+@\S+\.\S+/).test(values.email) ? "" : "Email is not valid."
         setErrors(temp)
         return Object.values(temp).every(x => x === "")
     }
@@ -43,7 +46,7 @@ export default function Login() {
             <Card sx={{ width: '400px' }}>
                 <CardContent sx={{ textAlign: 'center' }}>
                     <Typography variant="h3" sx={{ my: 3 }}>
-                        BookClub App
+                        Create a Profile
                     </Typography>
                     <Box sx={{
                         '& .MuiTextField-root':
@@ -52,11 +55,13 @@ export default function Login() {
                             width: '90%',
                         }
                     }}>
-                        <form noValidate onSubmit={Login}>
+                        <form noValidate onSubmit={Register}>
                             <TextField label="Username" name='username' value={values.username} onChange={handleInputChange} variant='outlined'{...(errors.Username && { error: true, helperText: errors.username })} />
                             <TextField label="Password" name='password' value={values.password} onChange={handleInputChange} variant='outlined' />
-                            <Button type='signIn' variant="Text" size='medium' sx={{ width: '40%' }}>Sign In</Button>
-                            {/* <Button type='signIn' variant="Text" size='medium' sx={{ width: '40%' }}>Register</Button>  */}
+                            <TextField label="Firstname" name='firstname' value={values.firstname} onChange={handleInputChange} variant='outlined' />
+                            <TextField label="Lastname" name='lastname' value={values.lastname} onChange={handleInputChange} variant='outlined' />
+                            <TextField label="email" name='email' value={values.email} onChange={handleInputChange} variant='outlined'{...(errors.email && { error: true, helperText: errors.email })} />
+                            <Button type='signIn' variant="contained" size='large' sx={{ width: '90%' }}>Sign In</Button>
                         </form>
 
                     </Box>
