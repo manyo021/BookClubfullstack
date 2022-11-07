@@ -57,7 +57,7 @@ export default function Login() {
                             <TextField label="Username" name='username' value={values.username} onChange={handleInputChange} variant='outlined'{...(errors.Username && { error: true, helperText: errors.username })} />
                             <TextField label="Password" name='password' value={values.password} onChange={handleInputChange} variant='outlined' />
                             <Button type='signIn' variant="Text" size='medium' sx={{ width: '40%' }}>Sign In</Button>
-                            <Link to="/Register" style={{ textDecoration: 'none' }}>
+                            <Link to="/Register" style={{ textDecoration: 'none', color: 'inherit' }}>
                                 <Button type='signIn' variant="Text" size='medium' sx={{ width: '40%' }}>
                                     Register
                                 </Button>
